@@ -1,0 +1,26 @@
+PASOS
+1) SSMS (conectado a ISA01): ejecutar EN ORDEN
+     a) 01_Almacen.sql                  (base, tablas, usuarios, productos)
+     b) 02_Facturacion.sql              (facturas)
+     c) 03_Cajeros_Credito_Reportes.sql (cajeros, credito, cobro, reportes)
+2) Visual Studio: abrir AlmacenApp.sln. .NET Framework 4.7.2.
+3) La conexion se lee de App.config.
+4) Ejecutar (F5). Inicia en FrmLogin.
+
+USUARIOS
+  Administrador : el que ya tenias (p. ej. Adminonly)
+  Invitado      : solo lectura (no factura)
+  Cajeros de prueba (clave Caja2026):
+      cajeromanana  (turno Manana  06:00-14:00)
+      cajerotarde   (turno Tarde   14:00-22:00)
+      cajeronoche   (turno Noche   22:00-06:00)
+  Un cajero SOLO puede entrar en el horario de su turno.
+
+FUNCIONES
+- Administrador: productos, clientes, cajeros, facturar y reportes.
+- Cajero: facturar y clientes (productos solo lectura).
+- Factura: Contado o Credito, numero 0001, 0002...; ITBIS 18% por linea.
+- Cobrar y guardar: pide monto pagado y calcula la devuelta (contado);
+  a credito registra la cuenta por cobrar. Luego se imprime (PDF o TXT). F5 = imprimir.
+- Reportes (administrador): Cuadre del dia, Ventas por cajero, Inventario en stock,
+  Facturas contado/credito, 5 clientes con mas ventas. Se pueden exportar a PDF o TXT.
